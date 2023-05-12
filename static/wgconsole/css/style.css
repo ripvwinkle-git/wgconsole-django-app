@@ -1,0 +1,284 @@
+* {
+    box-sizing: border-box;
+    font-family: "Roboto";
+    color: white;
+    line-height: 2em;
+    font-size: 14px;
+}
+
+body {
+    background-color: rgb(20, 20, 20);
+    margin-top: 0px;
+    margin-bottom: 0px;
+    margin-left: 0px;
+    margin-right: 0px;
+    padding-top: 0px;
+    padding-bottom: 0px;
+    padding-left: 0px;
+    padding-right: 0px;
+    min-height: 100vh;
+}
+
+input {
+    background-color: rgb(40, 40, 40);
+    border-style: solid;
+    border-width: 1px;
+    border-color: rgb(80, 80, 80);
+    border-radius: 4px;
+    width: 100%;
+}
+
+.container {
+    background-color: rgb(60, 60, 60);
+    border-radius: 4px;
+    overflow: hidden;
+    margin: 0px;
+    padding: 0px;
+}
+
+.container-label {
+    text-align: center;
+    background-color: rgb(100, 100, 100);
+    margin: 0;
+    padding: 10px;
+}
+
+.container-center {
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    transform: translate(-50%, 0%);
+}
+
+.button {
+    line-height: 2.5em;
+    text-decoration: none;
+    text-align: center;
+    background-color: rgb(100, 100, 100);
+    border-style: solid;
+    border-width: 1px;
+    border-color: rgb(120, 120, 120);
+    border-radius: 4px;
+    padding: 0px;
+    display: block;
+    overflow: hidden;
+}
+
+.button-container {
+    line-height: 2.5em;
+    text-decoration: none;
+    text-align: center;
+    background-color: rgb(100, 100, 100);
+    border-style: solid;
+    border-width: 1px;
+    border-color: rgb(120, 120, 120);
+    border-radius: 4px;
+    padding: 0px;
+    overflow: hidden;
+}
+
+.button:hover {
+    background-color: rgb(120, 120, 120);
+    cursor: pointer
+}
+
+.center {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.errormsg {
+    color: red;
+    line-height: 1em;
+    font-size: 12px;
+    background-color: white;
+    opacity: 0.75;
+    border-style: solid;
+    border-width: 1px;
+    border-color: red;
+    border-radius: 4px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    overflow: hidden;
+}
+
+details.settings {
+    padding: 0px;
+    margin: 5px;
+    overflow: hidden;
+}
+
+details.settings summary {
+    display: list-item;
+    background-color: rgb(100, 100, 100);
+    border-radius: 4px;
+    padding-top: 0px;
+    padding-bottom: 0px;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin: 0px;
+    width: 200px;
+}
+
+details.settings summary:hover {
+    background-color: rgb(120, 120, 120);
+    cursor: pointer;
+}
+
+details.settings[open] summary {
+    border-radius: 4px 4px 0px 0px;
+}
+
+details.settings form {
+    display: grid;
+    grid-template-columns: auto;
+    grid-template-areas:
+    'peerid   '
+    'interface'
+    'peer     '
+    'qrcode   '
+    'saveconf ';
+    row-gap: 0px;
+    border-style: solid;
+    border-width: 2px;
+    border-color:rgb(100, 100, 100);
+    border-radius: 0px 4px 4px 4px;
+    margin: 0px;
+    padding: 0px;
+}
+
+details.settings summary:hover + form {
+    border-color: rgb(120, 120, 120);
+}
+
+details.settings form p {
+    color: lightgray;
+    line-height: 1em;
+    font-size: 12px;
+    margin-top: 10px;
+    margin-bottom: 0px;
+    margin-left: 10px;
+    margin-right: 0px;
+}
+
+details.settings fieldset {
+    display: grid;
+    grid-template-columns: 250px;
+    width: auto;
+    row-gap: 5px;
+    border-style: solid;
+    border-color: rgb(100, 100, 100);
+    border-width: 1px;
+    border-radius: 4px;
+    margin: 10px;
+    padding: 10px;
+}
+
+details.settings legend {
+    padding-left: 4px;
+    padding-right: 4px;
+}
+
+details.settings input {
+    display: block;
+    margin: 0px;
+    height: 2em;
+}
+
+#id_loginform {
+    display: grid;
+    row-gap: 10px;
+    margin: 0px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+#id_index_container {
+    display: grid;
+    grid-template-areas:
+    '. navmenu .'
+    '. content .'
+    '. footer  .';
+    grid-template-columns: auto 95vw auto;
+    grid-template-rows: max-content auto 100px;
+    min-height: 100vh;
+    width: 100vw;
+    align-content: stretch;
+    justify-content: stretch;
+    padding: 0px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    margin-left: 0px;
+    margin-right: 0px;
+    column-gap: 5px;
+    row-gap: 5px;
+}
+
+#id_navmenu {
+    grid-area: navmenu;
+    display: grid;
+    grid-template-areas: 'navmenu-admin . navmenu-user navmenu-logout';
+    grid-template-columns: 100px auto auto 80px;
+    margin-top: 5px;
+    margin-bottom: 0px;
+    margin-left: 0px;
+    margin-right: 0px;
+    padding: 5px;
+}
+
+#id_navmenu-admin {
+    grid-area: navmenu-admin;
+}
+
+#id_navmenu-user {
+    grid-area: navmenu-user;
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-left: auto;
+    margin-right: 10px;
+}
+
+#id_navmenu-logout {
+    grid-area: navmenu-logout;
+}
+
+#id_content {
+    grid-area: content;
+}
+
+#id_footer {
+    grid-area: footer;
+    margin-top: 0px;
+    margin-bottom: 5px;
+    margin-left: 0px;
+    margin-right: 0px;
+    padding: 5px;
+}
+
+@media only screen and (min-width: 700px) {
+
+    details.settings fieldset {
+        grid-template-columns: 100px 250px;
+    }
+
+    details.settings form {
+        grid-template-columns: max-content auto;
+        grid-template-areas:
+        'peerid      .        '
+        'interface   qrcode   '
+        'peer        saveconf ';
+    }
+
+    #id_index_container {
+        grid-template-columns: auto 650px auto;
+    }
+
+}

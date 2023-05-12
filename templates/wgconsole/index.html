@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0">
+    <title>Wireguard Console</title>
+    <meta name="robots" content="noindex">
+    {% load static %}
+    <link type="text/css" rel="stylesheet" href="{% static 'wgconsole/css/style.css' %}">
+    <script type="text/javascript" src="{% static 'wgconsole/js/wgconsole.js' %}"></script>
+    <script type="text/javascript" src="{% static 'wgconsole/js/qrcodejs/qrcode.js' %}"></script>
+</head>
+
+<body>
+
+<div id="id_index_container">
+
+    <div id="id_navmenu" class="container">
+        {% if user.is_staff %}
+        <a id="admin" class="button" href="{% url 'admin:index' %}">Admin</a>
+        {% endif %}
+        <div id="id_navmenu-user">{{ user.username }}</div>
+        <a id="id_navmenu-logout" class="button" href="{% url 'wgconsole:logout' %}">Log out</a>
+    </div>
+
+    <div id="id_content" class="container">
+        <h4 class="container-label">Available Wireguard connection settings</h4>
+            {% for peer in peers %}
+            <details class="settings">
+                <summary>Connection #{{ forloop.counter }}</summary>
+                <form>
+                    {% csrf_token %}
+                    <p style="grid-area:peerid;">Peer ID: {{ peer.id }}</p>
+                    <fieldset style="grid-area:interface;">
+                        <legend>Interface</legend>
+                        <label for="id_{{ peer.id }}_name">Name:</label>
+                        <input id="id_{{ peer.id }}_name" type="text" value="{{ peer.interface.name }}" readonly>
+                        <label for="id_{{ peer.id }}_prvkey">Private key:</label>
+                        <input id="id_{{ peer.id }}_prvkey" type="text" value="{{ peer.private_key }}" readonly>
+                        <label for="id_{{ peer.id }}_pubkey">Public key:</label>
+                        <input id="id_{{ peer.id }}_pubkey" type="text" value="{{ peer.public_key }}" readonly>
+                        <label for="id_{{ peer.id }}_address">Address:</label>
+                        <input id="id_{{ peer.id }}_address" type="text" value="{{ peer.allowed_ips }}" readonly>
+                        <label for="id_{{ peer.id }}_dns">DNS servers:</label>
+                        <input id="id_{{ peer.id }}_dns" type="text" value="8.8.4.4, 8.8.8.8" readonly>
+                        <label for="id_{{ peer.id }}_listenport">Listen port:</label>
+                        <input id="id_{{ peer.id }}_listenport" type="text" value="{{ peer.listen_port}}" readonly>
+                    </fieldset>
+                    <fieldset style="grid-area:peer;">
+                        <legend>Peer</legend>
+                        <label for="id_{{ peer.id }}_srv_pubkey">Public key:</label>
+                        <input id="id_{{ peer.id }}_srv_pubkey" type="text" value="{{ peer.interface.public_key }}" readonly>
+                        <label for="id_{{ peer.id }}_srv_allowedips">Allowed IPs:</label>
+                        <input id="id_{{ peer.id }}_srv_allowedips" type="text" value="{{ peer.interface.allowed_ips_peer }}" readonly>
+                        <label for="id_{{ peer.id }}_srv_endpoint">Endpoint:</label>
+                        <input id="id_{{ peer.id }}_srv_endpoint" type="text" value="{{ peer.interface.endpoint_ip_peer }}:{{ peer.interface.port }}" readonly>
+                        
+                    </fieldset>
+
+                    <div id="id_{{ peer.id }}_qrcode" style="
+                    grid-area: qrcode;
+                    background-color: white;
+                    border-style: solid;
+                    border-color: white;
+                    border-width: 10px;
+                    margin-top: 23px;
+                    margin-bottom: 0px;
+                    margin-left: auto;
+                    margin-right: auto;
+                    width: max-content;
+                    height: max-content;
+                    "></div>
+                    <script type="text/javascript">
+                        var qrcode = new QRCode(document.getElementById("id_{{ peer.id }}_qrcode"), {
+                            text: makeconf({{ peer.id }}),
+                            width: 200,
+                            height: 200,
+                            colorDark : "#000000",
+                            colorLight : "#ffffff",
+                            correctLevel : QRCode.CorrectLevel.H
+                        });
+                    </script>
+
+                    <button
+                        id="id_{{ peer.id }}_saveconf"
+                        class="button"
+                        type="button"
+                        onclick="saveconf({{ peer.id }})"
+                        style="
+                            grid-area:saveconf;
+                            margin-top:23px;
+                            margin-bottom:10px;
+                            margin-left:auto;
+                            margin-right:auto;
+                            width:200px;
+                            height:37px;"
+                            >
+                        Save config
+                    </button>
+                </form>
+            </details>
+            {% endfor %}
+    </div>
+
+    <div id="id_footer" class="container">
+
+    </div>
+</div>
+
+</body>
+
+</html>

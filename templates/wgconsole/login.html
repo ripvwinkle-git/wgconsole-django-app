@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wireguard Console Log in</title>
+    <meta name="robots" content="noindex">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'wgconsole/css/style.css' %}">
+</head>
+
+<body>
+
+<div class="container container-center" style="width:300px;">
+    <h4 class="container-label">Wireguard Console</h4>
+    <form id="id_loginform" action="{% url 'wgconsole:login' %}" method="post">
+        {% csrf_token %}
+        {% if auth_failure %}
+        <div class="errormsg" style="width:250px;">
+            Please enter the correct username and password. Note that both fields may be case-sensitive.
+        </div>
+        {% endif %}
+        <div>
+            <label for="id_username">User name:</label>
+            <input type="text" id="id_username" name="username" autofocus autocapitalize="none" autocomplete="username" maxlength="150" required>
+        </div>
+        <div>
+            <label for="id_password">Password:</label>
+            <input type="password" id="id_password" name="password" autocomplete="current-password" required>
+        </div>
+        <div>
+            <input class="button center" style="width:30%;" type="submit" value="Log in">
+        </div>
+    </form>
+</div>
+
+</body>
+
+</html>
