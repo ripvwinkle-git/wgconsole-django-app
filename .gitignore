@@ -1,6 +1,6 @@
-# Ignore .log files
+# .log files
 *.log
 
-# Python
-*.pyc
-__pycache__
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
