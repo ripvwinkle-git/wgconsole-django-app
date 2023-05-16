@@ -115,6 +115,7 @@ details.settings {
 }
 
 details.settings summary {
+    line-height: 2.5em;
     display: list-item;
     background-color: rgb(100, 100, 100);
     border-radius: 4px;
@@ -205,10 +206,9 @@ details.settings input {
     display: grid;
     grid-template-areas:
     '. navmenu .'
-    '. content .'
-    '. footer  .';
+    '. content .';
     grid-template-columns: auto 95vw auto;
-    grid-template-rows: max-content auto 100px;
+    grid-template-rows: max-content auto;
     min-height: 100vh;
     width: 100vw;
     align-content: stretch;
@@ -252,15 +252,7 @@ details.settings input {
 
 #id_content {
     grid-area: content;
-}
-
-#id_footer {
-    grid-area: footer;
-    margin-top: 0px;
     margin-bottom: 5px;
-    margin-left: 0px;
-    margin-right: 0px;
-    padding: 5px;
 }
 
 @media only screen and (min-width: 700px) {
